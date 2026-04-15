@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ora Doce | Experiência Gourmet</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #e63946; /* Vermelho Cereja */
+            --secondary: #ffb4a2; /* Rosa Pêssego */
+            --dark: #2d132c; /* Roxo Profundo */
+            --light: #fff0f3;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMAÇÕES DE REVEAL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(45, 19, 44, 0.6), rgba(45, 19, 44, 0.6)), 
+                        url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=1920') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-family: 'Playfair Display'; font-size: 1.8rem; color: var(--primary); }
+
+        .hero-content h1 { font-family: 'Playfair Display'; font-size: 4rem; margin-bottom: 20px; }
+        
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-main:hover { transform: scale(1.05); background: #c12e3a; }
+
+        /* --- SEÇÃO DE CARDS --- */
+        .section-title {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .section-title h2 { font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--dark); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .product-card:hover { transform: translateY(-10px); }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-body { padding: 25px; }
+
+        .card-body h3 { margin-bottom: 10px; color: var(--dark); }
+
+        .card-body p { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
+
+        .price-tag {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .btn-card {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 10px;
+            transition: 0.3s;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-card:hover { background: var(--primary); color: white; }
+
+        /* --- INFO SECTION --- */
+        .info-strip {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5%;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .info-item i { font-size: 2rem; color: var(--secondary); margin-bottom: 15px; }
+
+        /* --- WHATSAPP --- */
+        .wpp-float {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background: #25d366;
+            color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Ora Doce 🍰</div>
+        <div class="nav-menu">
+            <a href="https://instagram.com/oradocedoceria" target="_blank" style="color: var(--primary); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="hero-content">
+            <h1>Ora Doce Cafeteria</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">O sabor inesquecível de Beberibe, feito com amor.</p>
+            <a href="#menu" class="btn-main">Ver Cardápio</a>
+        </div>
+    </header>
+
+    <section id="menu">
+        <div class="section-title reveal">
+            <h2>Nossas Delícias</h2>
+            <p>Escolha o seu favorito e peça agora!</p>
+        </div>
+
+        <div class="container">
+            <div class="product-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=500')"></div>
+                <div class="card-body">
+                    <h3>Bolo de Chocolate Real</h3>
+                    <p>Massa úmida com 3 camadas de recheio de brigadeiro gourmet.</p>
+                    <span class="price-tag">R$ 15,90 <small>(fatia)</small></span>
+                    <a href="https://wa.me/5585991670510" class="btn-card">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1559622214-f8a9850965bb?auto=format&fit=crop&q=80&w=500')"></div>
+                <div class="card-body">
+                    <h3>Açaí Premium</h3>
+                    <p>O legítimo açaí com frutas frescas e leite condensado.</p>
+                    <span class="price-tag">R$ 22,00</span>
+                    <a href="https://wa.me/5585991670510" class="btn-card">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=500')"></div>
+                <div class="card-body">
+                    <h3>Sanduíche Artesanal</h3>
+                    <p>Pão selado na manteiga, frango defumado e queijo coalho.</p>
+                    <span class="price-tag">R$ 18,50</span>
+                    <a href="https://wa.me/5585991670510" class="btn-card">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&q=80&w=500')"></div>
+                <div class="card-body">
+                    <h3>Box de Docinhos</h3>
+                    <p>Combo com 6 unidades de brigadeiros variados (Ninho, Coco, Café).</p>
+                    <span class="price-tag">R$ 12,00</span>
+                    <a href="https://wa.me/5585991670510" class="btn-card">Pedir no WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-strip reveal">
+        <div class="info-item">
+            <i class="fas fa-truck"></i>
+            <h3>Delivery Rápido</h3>
+            <p>Entregamos em toda Beberibe</p>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-heart"></i>
+            <h3>Artesanal</h3>
+            <p>Ingredientes selecionados</p>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-store"></i>
+            <h3>Loja Física</h3>
+            <p>Av. Maria Calado, 491 D</p>
+        </div>
+    </section>
+
+    <footer style="background: #1a0b19; color: white; padding: 40px 20px; text-align: center;">
+        <p>Segunda a Sábado: 17h às 23h</p>
+        <p style="opacity: 0.6; font-size: 0.8rem; margin-top: 10px;">&copy; 2026 Ora Doce Doceria - Beberibe/CE</p>
+    </footer>
+
+    <a href="https://wa.me/5585991670510" class="wpp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Disparar uma vez no load para itens do topo
+        reveal();
+    </script>
+</body>
+</html>
